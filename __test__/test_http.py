@@ -5,8 +5,8 @@ from datetime import *
 import sys
 
 try:
-    # url = 'http://www.naver.com'
-    url = 'http://www.nasfafver.com'
+    url = 'http://www.naver.com'
+    # url = 'http://www.nasfafver.com'
     request = Request(url)    #리퀘스트 객체 생성
 
     urlopen(request)

@@ -11,3 +11,5 @@ from analysis_fb.collect.api.api import *
 
 
 fb_fetch_posts("jtbcnews", '2017-01-01', '2017-12-31')
+
+
