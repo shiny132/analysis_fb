@@ -4,6 +4,7 @@ import sys
 import json
 # def result_print(json_result):
 #     print("a")
+
 def json_request(
     url = ' ',
     encoding = 'utf-8',
@@ -15,9 +16,7 @@ def json_request(
         request = Request(url) # request객체 생성
         resp = urlopen(request) # 응답 받기
         resp_body = resp.read().decode(encoding) # 응답 읽기 (바디 내용)  - 바이트로 통신    인코딩 했으면 디코딩도 해야함
-
         json_result = json.loads(resp_body) # 읽어온 url의 바디(코드)를 가져옴 - json형태(딕셔너리)로 불러옴
-
         print('%s : success for request[%s]' % (datetime.now(), url))
 
         if callable(success) is False:  # 함수인지 아닌지를 판별
@@ -48,7 +47,6 @@ def html_request(
         print('%s : success for request[%s]' % (datetime.now(), url))
 
         if callable(success) is False: # 함수인지 아닌지를 판별
-            print("s_false")
             return html # return값을 주는 의미는 바깥에서 처리해라 뜻
 
         success(html)

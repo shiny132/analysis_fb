@@ -9,7 +9,8 @@ from analysis_fb.collect.api.api import *
 # id = fb_name_to_id("jtbcnews")
 # print(id)
 
+for posts in fb_fetch_posts("jtbcnews", '2017-01-01', '2017-12-31'):
+    print(posts)
 
-fb_fetch_posts("jtbcnews", '2017-01-01', '2017-12-31')
-
-
+# results = fb_fetch_posts("jtbcnews", '2017-01-01', '2017-12-31')
+# print(len(results))
