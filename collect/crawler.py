@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 from collect.api.api import *
 import json
 
-RESULT_DIRECTORY = '__result__/crawling'
+# RESULT_DIRECTORY = '__result__/crawling'
 
 def preprocess_post(post):
     # 공유수
@@ -31,24 +31,51 @@ def preprocess_post(post):
 
 
 
-def crawling(pagename, since, until, fetch=True):
-    results = []
-    filename = '%s/%s_%s_%s.json' %(RESULT_DIRECTORY, pagename, since, until)
+# def crawling(pagename, since, until, fetch=True):
+#     results = []
+#     filename = '%s/%s_%s_%s.json' %(RESULT_DIRECTORY, pagename, since, until)
+#
+#     if fetch:
+#         for posts in fb_fetch_posts(pagename, since, until):
+#             for post in posts:
+#                 preprocess_post(post)
+#             results += posts
+#
+#         # save results to file(저장/적재)
+#         with open(filename, 'w', encoding='utf-8') as outfile:
+#             json_string = json.dumps(results, indent=4, sort_keys=True, ensure_ascii=False)   # 리스트 -> json string 변환
+#             outfile.write(json_string)
+#
+#     return filename
 
+
+def crawling(pagename, since, until, fetch=True, result_directory='', access_token=''):
+    # print("crawling " + pagename)
+    results = []
+    filename = '%s/%s_%s_%s.json' % (
+        result_directory,
+        pagename,
+        since,
+        until)
     if fetch:
-        for posts in fb_fetch_posts(pagename, since, until):
+        for posts in fb_fetch_posts(pagename, since, until, access_token):
             for post in posts:
                 preprocess_post(post)
+
             results += posts
+            # print(posts)
 
-        # save results to file(저장/적재)
+        #save results to file(저장/적재)
+        # outfile = open(filename, 'w', encoding='utf-8')
+
         with open(filename, 'w', encoding='utf-8') as outfile:
-            json_string = json.dumps(results, indent=4, sort_keys=True, ensure_ascii=False)   # 리스트 -> json string 변환
+            json_string = json.dumps(
+                results,
+                indent=4,
+                sort_keys=True,
+                ensure_ascii=False)
             outfile.write(json_string)
-
     return filename
-
-
 
 # def crawling(pagename, since, until):
 #     # print("crawling " + pagename)
@@ -77,5 +104,5 @@ def crawling(pagename, since, until, fetch=True):
 #             ensure_ascii=False)
 #         outfile.write(json_string)
 
-if os.path.exists(RESULT_DIRECTORY) is False:
-    os.makedirs(RESULT_DIRECTORY)
+# if os.path.exists(RESULT_DIRECTORY) is False:
+#     os.makedirs(RESULT_DIRECTORY)

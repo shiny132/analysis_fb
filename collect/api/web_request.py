@@ -17,6 +17,7 @@ def json_request(
         resp = urlopen(request) # 응답 받기
         resp_body = resp.read().decode(encoding) # 응답 읽기 (바디 내용)  - 바이트로 통신    인코딩 했으면 디코딩도 해야함
         json_result = json.loads(resp_body) # 읽어온 url의 바디(코드)를 가져옴 - json형태(딕셔너리)로 불러옴
+        print(json_result)
         print('%s : success for request[%s]' % (datetime.now(), url))
 
         if callable(success) is False:  # 함수인지 아닌지를 판별

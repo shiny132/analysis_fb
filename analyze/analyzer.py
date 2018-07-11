@@ -14,9 +14,7 @@ def json_to_str(filename, key):
         value = item.get(key)
         if value is None:
             continue
-
         data += re.sub(r'[^\w]', '', value)
-
         # print(value)
     return data
 
